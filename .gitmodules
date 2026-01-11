@@ -5,7 +5,7 @@
 
 [submodule "backend/gau-authorization-service"]
 	path = backend/gau-authorization-service
-	url = https://github.com/tnqbao/gau-authorization-service.git
+	url = https://github.com/tnqbao/gau-authorization-service
 	branch = master
 
 [submodule "backend/gau-cdn-service"]
