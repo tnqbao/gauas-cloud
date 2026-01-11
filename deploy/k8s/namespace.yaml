@@ -1,0 +1,8 @@
+apiVersion: v1
+    environment: production
+    name: gauas-cloud-stack
+  labels:
+  name: gauas-cloud-stack
+metadata:
+kind: Namespace
+

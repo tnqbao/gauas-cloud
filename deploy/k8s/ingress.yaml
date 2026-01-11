@@ -1,0 +1,113 @@
+---
+                  number: 15672
+                port:
+                name: rabbitmq-service
+              service:
+            backend:
+            pathType: Prefix
+          - path: /
+        paths:
+      http:
+    - host: rabbitmq.gauas.online
+  rules:
+      secretName: rabbitmq-gauas-tls
+        - rabbitmq.gauas.online
+    - hosts:
+  tls:
+  ingressClassName: nginx
+spec:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  annotations:
+  namespace: gauas-cloud-stack
+  name: rabbitmq-management-ingress
+metadata:
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+# Ingress for RabbitMQ Management (Optional - for admin access)
+---
+
+                  number: 9001
+                port:
+                name: minio-service
+              service:
+            backend:
+            pathType: Prefix
+          - path: /
+        paths:
+      http:
+    - host: minio.gauas.online
+  rules:
+      secretName: minio-gauas-tls
+        - minio.gauas.online
+    - hosts:
+  tls:
+  ingressClassName: nginx
+spec:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  annotations:
+  namespace: gauas-cloud-stack
+  name: minio-console-ingress
+metadata:
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+# Ingress for MinIO Console (Optional - for admin access)
+---
+
+                  number: 3000
+                port:
+                name: gau-cloud-console-service
+              service:
+            backend:
+            pathType: Prefix
+          - path: /
+        paths:
+      http:
+    - host: cloud.gauas.online
+  rules:
+      secretName: cloud-gauas-tls
+        - cloud.gauas.online
+    - hosts:
+  tls:
+  ingressClassName: nginx
+spec:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  annotations:
+  namespace: gauas-cloud-stack
+  name: frontend-ingress
+metadata:
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+# Ingress for Frontend
+---
+
+                  number: 80
+                port:
+                name: nginx-gateway-service
+              service:
+            backend:
+            pathType: Prefix
+          - path: /
+        paths:
+      http:
+    - host: api.gauas.online
+  rules:
+      secretName: api-gauas-tls
+        - api.gauas.online
+    - hosts:
+  tls:
+  ingressClassName: nginx
+spec:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/proxy-body-size: "500m"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  annotations:
+  namespace: gauas-cloud-stack
+  name: api-gateway-ingress
+metadata:
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+# Ingress for API Gateway
+

@@ -1,0 +1,59 @@
+---
+  type: ClusterIP
+      targetPort: 3000
+    - port: 3000
+  ports:
+    app: gau-cloud-console
+  selector:
+spec:
+  namespace: gauas-cloud-stack
+  name: gau-cloud-console-service
+metadata:
+kind: Service
+apiVersion: v1
+# Frontend Service
+---
+
+              memory: "512Mi"
+              cpu: "300m"
+            limits:
+              memory: "256Mi"
+              cpu: "100m"
+            requests:
+          resources:
+              value: "https://api.gauas.online/api/v1/upload"
+            - name: NEXT_PUBLIC_UPLOAD_URL
+              value: "https://api.gauas.online/api/v1/cdn"
+            - name: NEXT_PUBLIC_CDN_URL
+              value: "https://api.gauas.online/api/v1/account"
+            - name: NEXT_PUBLIC_ACCOUNT_URL
+              value: "https://api.gauas.online/api/v1/auth"
+            - name: NEXT_PUBLIC_AUTHORIZATION_URL
+              value: "https://api.gauas.online/api/v1/cloud"
+            - name: NEXT_PUBLIC_API_URL
+              value: "https://api.gauas.online"
+            - name: NEXT_PUBLIC_API_GATEWAY
+          env:
+            - containerPort: 3000
+          ports:
+          imagePullPolicy: Always
+          image: iamqbao/gau-cloud-console:latest
+        - name: gau-cloud-console
+      containers:
+    spec:
+        app: gau-cloud-console
+      labels:
+    metadata:
+  template:
+      app: gau-cloud-console
+    matchLabels:
+  selector:
+  replicas: 2
+spec:
+  namespace: gauas-cloud-stack
+  name: gau-cloud-console
+metadata:
+kind: Deployment
+apiVersion: apps/v1
+# Frontend Deployment
+

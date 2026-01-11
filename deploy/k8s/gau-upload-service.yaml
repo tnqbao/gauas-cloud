@@ -1,0 +1,87 @@
+---
+# Upload Service HTTP Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gau-upload-http
+  namespace: gauas-cloud-stack
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: gau-upload-http
+  template:
+    metadata:
+      labels:
+        app: gau-upload-http
+    spec:
+      containers:
+        - name: gau-upload-http
+          image: iamqbao/gau-upload-service:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: gauas-config
+            - secretRef:
+                name: gauas-secret
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+
+---
+# Upload Service Consumer Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gau-upload-consumer
+  namespace: gauas-cloud-stack
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gau-upload-consumer
+  template:
+    metadata:
+      labels:
+        app: gau-upload-consumer
+    spec:
+      containers:
+        - name: gau-upload-consumer
+          image: iamqbao/gau-upload-service:latest
+          imagePullPolicy: Always
+          command: ["./entrypoint.sh"]
+          args: ["consumer"]
+          envFrom:
+            - configMapRef:
+                name: gauas-config
+            - secretRef:
+                name: gauas-secret
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
+
+---
+# Upload Service HTTP Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: gau-upload-http-service
+  namespace: gauas-cloud-stack
+spec:
+  selector:
+    app: gau-upload-http
+  ports:
+    - port: 8080
+      targetPort: 8080
+  type: ClusterIP
+

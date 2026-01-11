@@ -1,0 +1,55 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: gauas-cloud-stack
+
+resources:
+  # Namespace and configuration
+  - namespace.yaml
+  - configmap.yaml
+  - secret.yaml
+
+  # Infrastructure services
+  - postgres.yaml
+  - redis.yaml
+  - minio.yaml
+  - rabbitmq.yaml
+
+  # Backend services
+  - gau-account-service.yaml
+  - gau-authorization-service.yaml
+  - gau-cdn-service.yaml
+  - gau-cloud-service.yaml
+  - gau-upload-service.yaml
+
+  # API Gateway
+  - nginx-gateway-configmap.yaml
+  - nginx-gateway.yaml
+
+  # Frontend
+  - gau-cloud-console.yaml
+
+  # Ingress
+  - ingress.yaml
+
+# Common labels for all resources
+commonLabels:
+  app.kubernetes.io/name: gauas-cloud-stack
+  app.kubernetes.io/version: "1.0.0"
+  app.kubernetes.io/managed-by: kustomize
+
+# Images (can be overridden for different environments)
+images:
+  - name: iamqbao/gau-account-service
+    newTag: latest
+  - name: iamqbao/gau-authorization-service
+    newTag: latest
+  - name: iamqbao/gau-cdn-service
+    newTag: latest
+  - name: iamqbao/gau-cloud-service
+    newTag: latest
+  - name: iamqbao/gau-upload-service
+    newTag: latest
+  - name: iamqbao/gau-cloud-console
+    newTag: latest
+

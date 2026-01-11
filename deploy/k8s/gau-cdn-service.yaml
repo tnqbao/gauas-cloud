@@ -1,0 +1,51 @@
+---
+# CDN Service Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gau-cdn-http
+  namespace: gauas-cloud-stack
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: gau-cdn-http
+  template:
+    metadata:
+      labels:
+        app: gau-cdn-http
+    spec:
+      containers:
+        - name: gau-cdn-http
+          image: iamqbao/gau-cdn-service:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: gauas-config
+            - secretRef:
+                name: gauas-secret
+          resources:
+            requests:
+              cpu: "300m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+
+---
+# CDN Service Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: gau-cdn-http-service
+  namespace: gauas-cloud-stack
+spec:
+  selector:
+    app: gau-cdn-http
+  ports:
+    - port: 8080
+      targetPort: 8080
+  type: ClusterIP
+

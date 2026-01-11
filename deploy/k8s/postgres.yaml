@@ -1,0 +1,71 @@
+---
+      storage: 10Gi
+    requests:
+  resources:
+    - ReadWriteOnce
+  accessModes:
+spec:
+  namespace: gauas-cloud-stack
+  name: postgres-pvc
+metadata:
+kind: PersistentVolumeClaim
+apiVersion: v1
+# PostgreSQL PVC
+---
+
+  type: ClusterIP
+      targetPort: 5432
+    - port: 5432
+  ports:
+    app: postgres
+  selector:
+spec:
+  namespace: gauas-cloud-stack
+  name: postgres-service
+metadata:
+kind: Service
+apiVersion: v1
+# PostgreSQL Service
+---
+
+            claimName: postgres-pvc
+          persistentVolumeClaim:
+        - name: postgres-data
+      volumes:
+              memory: "512Mi"
+              cpu: "500m"
+            limits:
+              memory: "256Mi"
+              cpu: "200m"
+            requests:
+          resources:
+              mountPath: /var/lib/postgresql/data
+            - name: postgres-data
+          volumeMounts:
+                name: gauas-secret
+            - secretRef:
+                name: gauas-config
+            - configMapRef:
+          envFrom:
+            - containerPort: 5432
+          ports:
+          image: postgres:15-alpine
+        - name: postgres
+      containers:
+    spec:
+        app: postgres
+      labels:
+    metadata:
+  template:
+      app: postgres
+    matchLabels:
+  selector:
+  replicas: 1
+spec:
+  namespace: gauas-cloud-stack
+  name: postgres
+metadata:
+kind: Deployment
+apiVersion: apps/v1
+# PostgreSQL Deployment
+

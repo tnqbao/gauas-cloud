@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gauas-config
+  namespace: gauas-cloud-stack
+data:
+  # PostgreSQL Configuration
+  PGPOOL_HOST: "postgres-service"
+  PGPOOL_PORT: "5432"
+  PGPOOL_DB: "gauas_db"
+
+  # Redis Configuration
+  REDIS_HOST: "redis-service"
+  REDIS_PORT: "6379"
+  REDIS_ADDRESS: "redis-service:6379"
+  REDIS_DB: "0"
+
+  # MinIO Configuration
+  MINIO_ENDPOINT: "minio-service:9000"
+  MINIO_BUCKET_NAME: "gauas-bucket"
+  MINIO_USE_SSL: "false"
+  MINIO_REGION: "us-east-1"
+  MINIO_PORT: "9000"
+
+  # RabbitMQ Configuration
+  RABBITMQ_HOST: "rabbitmq-service"
+  RABBITMQ_PORT: "5672"
+
+  # Service URLs (internal communication)
+  AUTHORIZATION_SERVICE_URL: "http://gau-authorization-http-service:8080"
+  ACCOUNT_SERVICE_URL: "http://gau-account-http-service:8080"
+  UPLOAD_SERVICE_URL: "http://gau-upload-http-service:8080"
+  CDN_SERVICE_URL: "http://gau-cdn-http-service:8080"
+  CLOUD_SERVICE_URL: "http://gau-cloud-http-service:8080"
+
+  # CORS Configuration
+  ALLOWED_DOMAINS: "https://cloud.gauas.online,http://localhost:3000"
+  GLOBAL_DOMAIN: "https://cloud.gauas.online"
+
+  # Monitoring
+  GRAFANA_OTLP_ENDPOINT: "https://grafana.gauas.online"
+  SERVICE_NAME: "gauas-cloud-stack"
+
+  # Environment
+  DEPLOY_ENV: "production"
+  GROUP_NAME: "gauas-prod"
+  MODE: "production"
+
