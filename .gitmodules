@@ -1,0 +1,30 @@
+[submodule "backend/gau-account-service"]
+	path = backend/gau-account-service
+	url = https://github.com/tnqbao/gau-account-service.git
+	branch = master
+
+[submodule "backend/gau-authorization-service"]
+	path = backend/gau-authorization-service
+	url = https://github.com/tnqbao/gau-authorization-service.git
+	branch = master
+
+[submodule "backend/gau-cdn-service"]
+	path = backend/gau-cdn-service
+	url = https://github.com/tnqbao/gau-cdn-service.git
+	branch = master
+
+[submodule "backend/gau-cloud-service"]
+	path = backend/gau-cloud-service
+	url = https://github.com/tnqbao/gau-cloud-service.git
+	branch = master
+
+[submodule "backend/gau-upload-service"]
+	path = backend/gau-upload-service
+	url = https://github.com/tnqbao/gau-upload-service.git
+	branch = master
+
+[submodule "frontend/gau-cloud-console"]
+	path = frontend/gau-cloud-console
+	url = https://github.com/tnqbao/gau-cloud-console.git
+	branch = master
+
