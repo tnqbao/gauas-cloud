@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/backend/gau-cloud-service/migration/000001_create_iam_users_table.down.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/backend/gau-cloud-service/migration/000001_create_iam_users_table.up.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/backend/gau-cloud-service/migration/000002_add_user_id_to_iam_users.down.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/backend/gau-cloud-service/migration/000002_add_user_id_to_iam_users.up.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/backend/gau-cloud-service/migration/000003_create_iam_policies_table.down.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/backend/gau-cloud-service/migration/000003_create_iam_policies_table.up.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/backend/gau-cloud-service/migration/000004_create_buckets_table.down.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/backend/gau-cloud-service/migration/000004_create_buckets_table.up.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/backend/gau-cloud-service/migration/000005_remove_unique_email_constraint.down.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/backend/gau-cloud-service/migration/000005_remove_unique_email_constraint.up.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/backend/gau-cloud-service/migration/000006_create_objects_table.down.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/backend/gau-cloud-service/migration/000006_create_objects_table.up.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/backend/gau-cloud-service/migration/000007_update_objects_table_schema.down.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/backend/gau-cloud-service/migration/000007_update_objects_table_schema.up.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/backend/gau-cloud-service/migration/000008_create_upload_sessions_table.down.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/backend/gau-cloud-service/migration/000008_create_upload_sessions_table.up.sql" dialect="GenericSQL" />
+  </component>
+</project>
