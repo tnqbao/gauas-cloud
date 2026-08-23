@@ -28,3 +28,6 @@
 	url = https://github.com/tnqbao/gau-cloud-console.git
 	branch = master
 
+[submodule "backend/account-service-java"]
+	path = backend/account-service-java
+	url = git@github.com:tnqbao/account-service.git

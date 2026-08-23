@@ -23,10 +23,14 @@ Gauas Cloud Stack is a self-hosted cloud platform that enables organizations to 
 ## Architecture
 
 ### Backend Services (Go)
+- **gau-account-service**: Account management service
 - **gau-authorization-service**: Authentication, JWT token management, user sessions
 - **gau-cdn-service**: Content delivery, image processing, caching layer
 - **gau-cloud-service**: Core cloud operations, resource management, IAM
 - **gau-upload-service**: File upload handling, chunked transfer, format conversion
+
+### Backend Services (Java)
+- **account-service-java**: Account service built with Spring Boot
 
 ### Frontend (Next.js)
 - **gau-cloud-console**: Web-based management console with React 19
@@ -41,13 +45,8 @@ Gauas Cloud Stack is a self-hosted cloud platform that enables organizations to 
 ## Technology Stack
 
 **Backend**
-- Go 1.24+
-- Gin Web Framework
-- GORM (PostgreSQL)
-- go-redis
-- AWS SDK v2 (S3)
-- RabbitMQ AMQP
-- OpenTelemetry
+- **Go**: Go 1.24+, Gin, GORM (PostgreSQL), go-redis, AWS SDK v2, RabbitMQ AMQP, OpenTelemetry
+- **Java**: Java 21, Spring Boot, Spring MVC, Spring Data JPA, Spring Data Redis, Spring Kafka, and Maven
 
 **Frontend**
 - Next.js 16
@@ -95,6 +94,8 @@ For detailed setup instructions, see [SETUP.md](./SETUP.md)
 ```
 gauas-cloud-stack/
 ├── backend/
+│   ├── account-service-java/        # Java/Spring Boot account service
+│   ├── gau-account-service/         # Go account service
 │   ├── gau-authorization-service/   # Auth & JWT service
 │   ├── gau-cdn-service/             # CDN & caching
 │   ├── gau-cloud-service/           # Core cloud service
@@ -124,11 +125,17 @@ gauas-cloud-stack/
 
 ## Development
 
-### Backend Development
+### Go Backend Development
 ```bash
 cd backend/gau-cloud-service
 go mod download
 go run main.go
+```
+
+### Java Backend Development
+```bash
+cd backend/account-service-java
+sh mvnw spring-boot:run
 ```
 
 ### Frontend Development
@@ -143,6 +150,10 @@ npm run dev
 # Backend tests
 cd backend/gau-cloud-service
 go test ./...
+
+# Java backend tests
+cd backend/account-service-java
+sh mvnw test
 
 # Frontend tests
 cd frontend/gau-cloud-console
@@ -229,4 +240,3 @@ For questions and support:
 - Open an issue on GitHub
 - Visit [gauas.online](https://gauas.online)
 - Check documentation in [SETUP.md](./SETUP.md)
-
